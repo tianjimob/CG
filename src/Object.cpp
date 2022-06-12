@@ -9,12 +9,9 @@
 #include "math/Vector.h"
 #include "surface/Surface.h"
 
-Sphere::Sphere(const Vec3& center, float radius, const Color& color)
-    : m_center(center), m_radius(radius), m_color(color) {}
-
 HitRecord Sphere::hit(Ray r, float t0, float t1) {
   HitRecord record{std::make_shared<Sphere>(*this),
-                   std::numeric_limits<float>::infinity(), m_color,
+                   std::numeric_limits<float>::infinity(),
                    Vec3{0.0f, 0.0f, 0.0f}};
   Vec3 ec = r.origin - m_center;
   float dd = r.direction * r.direction;
