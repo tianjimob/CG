@@ -12,11 +12,13 @@ class HitRecord;
 
 class Surface {
  public:
-  Material material;
-
-  Surface(Color color) : material(color) {}
+  explicit Surface(Material material) : m_material(material) {}
+  Material& getMaterial() { return m_material; }
   virtual ~Surface() = default;
-  virtual HitRecord hit(Ray r, float t0, float t1) = 0;
+  virtual HitRecord hit(const Ray& r, float t0, float t1) = 0;
+
+ private:
+  Material m_material;
 };
 
 struct HitRecord {
@@ -29,7 +31,6 @@ struct HitRecord {
 class GroupSurface {
  public:
   HitRecord hit(Ray r, float t0, float t1) const;
-  // order adding is order rendering
   inline void add(std::shared_ptr<Surface> surface) {
     m_surfaces.push_back(surface);
   }

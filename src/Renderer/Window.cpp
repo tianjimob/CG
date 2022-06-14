@@ -5,7 +5,7 @@
 #include "easyx.h"
 
 Window::Window(int width, int height) : m_width(width), m_height(height) {
-  initgraph(m_width, m_height);
+  initgraph(m_width, m_height, EW_NOCLOSE);
   setorigin(0, m_height);
   setaspectratio(1, -1);
 }

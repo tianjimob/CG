@@ -10,5 +10,5 @@ Ray Ray::genOrthographicRay(float left, float right, float bottom, float top,
   static Vec3 W{E.x, E.y, 1.0f};
   float u = left + (right - left) * ((float)i + 0.5f) / (float)width;
   float v = bottom + (top - bottom) * ((float)j + 0.5f) / (float)height;
-  return {Vec3{0.0f, 0.0f, 0.0f} + u * U + v * V, -W};
+  return {E + u * U + v * V, -W};
 }

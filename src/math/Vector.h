@@ -1,6 +1,9 @@
 #pragma once
 
 #include <math.h>
+
+#include <cmath>
+
 struct Vec3 {
   float x;
   float y;
@@ -38,4 +41,6 @@ struct Vec3 {
 
 inline Vec3 operator*(float scalar, const Vec3& vec3) { return vec3 * scalar; }
 
-inline float vectorLength(const Vec3& vector) { return vector * vector; }
+inline float vectorLength(const Vec3& vector) {
+  return std::sqrt(vector * vector);
+}

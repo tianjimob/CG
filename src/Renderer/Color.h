@@ -17,12 +17,19 @@ struct Color {
             result.g > 1.0f ? 1.0f : result.g,
             result.b > 1.0f ? 1.0f : result.b};
   }
+  inline Color operator+(float rhs) const {
+    return *this + Color{rhs, rhs, rhs};
+  }
   inline Color &operator+=(const Color &rhs) {
     Color result = *this + rhs;
     this->r = result.r;
     this->g = result.g;
     this->b = result.b;
     return *this;
+  }
+
+  inline Color operator/(float rhs) const {
+    return {r / rhs, g / rhs, b / rhs};
   }
 };
 

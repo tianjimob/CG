@@ -24,9 +24,9 @@ class PointLight : public Light {
     float r = vectorLength(m_position - x);
     Vec3 l = (m_position - x) / r;
     Vec3 n = record.normal;
-    Color E = std::max(0.0f, n * l) * m_color;
+    Color E = std::max(0.0f, n * l) * m_color / (r * r);
     Vec3 v = -ray.direction / vectorLength(ray.direction);
-    Color k = record.surface->material.evaluate(l, v, n);
+    Color k = record.surface->getMaterial().evaluate(l, v, n);
     return k * E;
   }
 
@@ -38,8 +38,8 @@ class PointLight : public Light {
 class AmbientLight : public Light {
  public:
   explicit AmbientLight(Color color) : m_color(color) {}
-  inline Color illuminate(Ray ray, const HitRecord& record) override {
-    Color k = record.surface->material.color;
+  Color illuminate(Ray ray, const HitRecord& record) override {
+    Color k = record.surface->getMaterial().getReflectance();
     return k * m_color;
   }
 

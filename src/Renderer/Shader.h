@@ -14,12 +14,11 @@ class Shader {
                         const Scene& scene) const {
     HitRecord record = scene.surfaces.hit(ray, t0, t1);
     if (record.t < std::numeric_limits<float>::infinity()) {
-      //   Color c{0.0f, 0.0f, 0.0f};
-      //   for (const auto& light : scene.lights.getLights()) {
-      //     c += light->illuminate(ray, record);
-      //   }
-      //   return c;
-      return record.surface->material.color;
+      Color c{0.0f, 0.0f, 0.0f};
+      for (const auto& light : scene.lights.getLights()) {
+        c += light->illuminate(ray, record);
+      }
+      return c;
     } else
       return m_bgColor;
   }
