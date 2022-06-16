@@ -2,12 +2,27 @@ add_rules("mode.debug", "mode.release")
 
 set_languages("c++20")
 
-target("cg")
-    set_kind("binary")
-    add_files("src/**.cpp")
-    add_includedirs("src","src/vendor/EasyX/Include")
+add_requires("glfw")
+
+add_includedirs("src")
+
+target("libCG")
+    set_kind("static")
+    add_files("src/math/*.cpp","src/Renderer/*.cpp","src/surface/*.cpp")
+    add_packages("glfw")
+    add_includedirs("src/vendor/EasyX/Include")
     add_links("EasyXw", "gdi32", "user32", "ole32", "shell32")
     add_linkdirs("src/vendor/EasyX/lib/VC2015/x64")
+
+target("RayTracing")
+    set_kind("binary")
+    add_files("src/RayTracing.cpp")
+    add_deps("libCG")
+
+target("VpOrthoTransform")
+    set_kind("binary")
+    add_files("src/VpOrthoTransform.cpp")
+    add_deps("libCG")
 --
 -- If you want to known more usage about xmake, please see https://xmake.io
 --

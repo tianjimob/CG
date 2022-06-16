@@ -4,9 +4,10 @@
 #include <vector>
 
 #include "Material.h"
-#include "Ray.h"
 #include "Renderer/Color.h"
+#include "math/Ray.h"
 #include "math/Vector.h"
+
 
 class HitRecord;
 

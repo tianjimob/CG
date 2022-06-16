@@ -1,11 +1,12 @@
 #pragma once
 
 #include <algorithm>
+#include <limits>
 #include <memory>
 #include <vector>
 
-#include "Ray.h"
 #include "Renderer/Color.h"
+#include "math/Ray.h"
 #include "math/Vector.h"
 #include "surface/Surface.h"
 
@@ -21,8 +22,9 @@ class PointLight : public Light {
       : m_color(color), m_position(position) {}
   Color illuminate(Ray ray, const HitRecord& record) override {
     Vec3 x = ray.evaluate(record.t);
-    float r = vectorLength(m_position - x);
-    Vec3 l = (m_position - x) / r;
+    Vec3 lNotNormal = m_position - x;
+    float r = vectorLength(lNotNormal);
+    Vec3 l = lNotNormal / r;
     Vec3 n = record.normal;
     Color E = std::max(0.0f, n * l) * m_color / (r * r);
     Vec3 v = -ray.direction / vectorLength(ray.direction);

@@ -8,5 +8,7 @@ struct Ray {
   inline Vec3 evaluate(float t) const { return origin + t * direction; }
   static Ray genOrthographicRay(float left, float right, float bottom,
                                 float top, int width, int height, int i, int j);
-  //@todo: static Ray genPerspectiveRay();
+  static Ray genPerspectiveRay(float left, float right, float bottom, float top,
+                               float distance, int width, int height, int i,
+                               int j);
 };

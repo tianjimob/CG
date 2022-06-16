@@ -2,9 +2,9 @@
 
 #include <limits>
 
-#include "Ray.h"
 #include "Renderer/Color.h"
 #include "Scene.h"
+#include "math/Ray.h"
 #include "surface/Surface.h"
 
 class Shader {
