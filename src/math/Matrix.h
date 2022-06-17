@@ -41,14 +41,14 @@ public:
     return mat;
   }
 
-  static Mat4 viewport(int width, int height) {
+  static Mat4 viewport(int x, int y, int width, int height) {
     auto w = (float)width;
     auto h = (float)height;
     Mat4 mat(1.0f);
     mat[0][0] = w / 2;
-    mat[0][3] = w / 2 - 0.5f;
+    mat[0][3] = w / 2 + (float)x - 0.5f;
     mat[1][1] = h / 2;
-    mat[1][3] = h / 2 - 0.5f;
+    mat[1][3] = h / 2 + (float)y - 0.5f;
     return mat;
   }
 
