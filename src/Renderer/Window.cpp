@@ -43,7 +43,7 @@ bool Window::isKeyReleased(Keycode keycode) const {
 bool Window::isRunning() const {
   ExMessage msg;
   peekmessage(&msg, EM_KEY, false);
-  if (msg.message == WM_KEYUP && msg.vkcode == 0x51)
+  if (msg.message == WM_KEYUP && msg.vkcode == (BYTE)Keycode::Q)
     return false;
   return true;
 }

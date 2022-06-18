@@ -9,7 +9,8 @@ enum class Keycode : unsigned char {
   Left = 0x25,
   Up = 0x26,
   Right = 0x27,
-  Down = 0x28
+  Down = 0x28,
+  Q = 0x51
 };
 
 class Window {

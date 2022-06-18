@@ -1,7 +1,11 @@
 #pragma once
 
+#include "math/Vector.h"
 #include <cmath>
 
+struct Vec3;
+
+inline float vectorLength(const Vec3 &vector);
 struct Vec3 {
   float x;
   float y;
@@ -13,6 +17,8 @@ struct Vec3 {
     return {y * rhs.z - z * rhs.y, z * rhs.x - x * rhs.z,
             x * rhs.y - y * rhs.x};
   }
+
+  inline Vec3 normalize() const { return *this / vectorLength(*this); }
 
   inline Vec3 operator+(const Vec3 &rhs) const {
     return {x + rhs.x, y + rhs.y, z + rhs.z};

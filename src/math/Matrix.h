@@ -1,6 +1,8 @@
 #pragma once
 
 #include <array>
+#include <cassert>
+#include <cstdlib>
 
 #include "math/Matrix.h"
 #include "math/Vector.h"
@@ -25,6 +27,18 @@ public:
 
   Mat4 operator*(const Mat4 &rhs);
   Vec4 operator*(const Vec4 &rhs);
+
+  static Mat4 perspective(float n, float f) {
+    auto nAbs = std::abs(n);
+    auto fAbs = std::abs(f);
+    Mat4 mat;
+    mat[0][0] = nAbs;
+    mat[1][1] = nAbs;
+    mat[2][2] = nAbs + fAbs;
+    mat[2][3] = -nAbs * fAbs;
+    mat[3][2] = 1;
+    return mat;
+  }
 
   static Mat4 ortho(float l, float r, float b, float t, float f, float n) {
     float rl = r - l;
